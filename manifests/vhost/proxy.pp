@@ -31,7 +31,7 @@ define apache::vhost::proxy (
   ) {
 
   include apache
-  include apache::proxy
+  include apache::mod::proxy_http
 
   $apache_name = $apache::params::apache_name
   $ssl_path = $apache::params::ssl_path
