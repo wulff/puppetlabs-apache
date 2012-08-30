@@ -66,7 +66,6 @@ class apache::params {
     $mod_python_package    = 'libapache2-mod-python'
     $mod_wsgi_package      = 'libapache2-mod-wsgi'
     $mod_auth_kerb_package = 'libapache2-mod-auth-kerb'
-    $ssl_package           = 'apache-ssl'
     $apache_dev            = ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev']
     $vdir                  = '/etc/apache2/sites-enabled/'
     $proxy_modules         = ['proxy', 'proxy_http']
@@ -76,20 +75,10 @@ class apache::params {
       'perl'   => 'libapache2-mod-perl2',
       'php5'   => 'libapache2-mod-php5',
       'python' => 'libapache2-mod-python',
-      'ssl'    => 'apache-ssl',
       'wsgi'   => 'libapache2-mod-wsgi',
     }
+    $mod_libs              = {}
   } else {
-    $user                  = 'www-data'
-    $group                 = 'www-data'
-    $apache_name           = 'apache2'
-    $php_package           = 'libapache2-mod-php5'
-    $mod_python_package    = 'libapache2-mod-python'
-    $mod_wsgi_package      = 'libapache2-mod-wsgi'
-    $mod_auth_kerb_package = 'libapache2-mod-auth-kerb'
-    $ssl_package           = 'apache-ssl'
-    $apache_dev            = 'apache-dev'
-    $vdir                  = '/etc/apache2/sites-enabled/'
-    $proxy_modules         = ['proxy', 'proxy_http']
+    fail("Class['apache::params']: Unsupported operatingsystem: $operatingsystem")
   }
 }

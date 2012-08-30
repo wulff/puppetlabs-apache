@@ -25,14 +25,12 @@ class apache::mod::default {
   apache::mod { 'env': }
   apache::mod { 'expires': }
   apache::mod { 'ext_filter': }
-  apache::mod { 'file_cache': }
   apache::mod { 'headers': }
   apache::mod { 'include': }
   apache::mod { 'info': }
   apache::mod { 'ldap': }
   apache::mod { 'log_config': }
   apache::mod { 'logio': }
-  apache::mod { 'mem_cache': }
   apache::mod { 'mime': }
   apache::mod { 'mime_magic': }
   apache::mod { 'negotiation': }

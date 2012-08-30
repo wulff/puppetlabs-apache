@@ -38,7 +38,7 @@
 define apache::vhost(
     $port,
     $docroot,
-    $docroot_user       = 'root',
+    $docroot_owner      = 'root',
     $docroot_group      = 'root',
     $serveradmin        = false,
     $configure_firewall = true,
@@ -57,7 +57,7 @@ define apache::vhost(
     $ensure             = 'present'
   ) {
 
-  validate_re($ensure, [ '^present$', '^absent$' ],
+  validate_re($ensure, '^(present|absent)$',
   "${ensure} is not supported for ensure.
   Allowed values are 'present' and 'absent'.")
 
@@ -70,7 +70,7 @@ define apache::vhost(
   }
 
   if $ssl == true {
-    include apache::ssl
+    include apache::mod::ssl
   }
 
   # Since the template will use auth, redirect to https requires mod_rewrite
@@ -85,7 +85,7 @@ define apache::vhost(
   if ! defined(File[$docroot]) {
     file { $docroot:
       ensure => directory,
-      owner  => $docroot_user,
+      owner  => $docroot_owner,
       group  => $docroot_group,
     }
   }

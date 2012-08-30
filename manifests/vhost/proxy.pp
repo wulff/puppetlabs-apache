@@ -38,11 +38,11 @@ define apache::vhost::proxy (
   $srvname = $name
 
   if $ssl == true {
-    include apache::ssl
+    include apache::mod::ssl
   }
 
-  file { "${priority}-${name}":
-    path    => "${apache::params::vdir}/${priority}-${name}",
+  file { "${priority}-${name}.conf":
+    path    => "${apache::params::vdir}/${priority}-${name}.conf",
     content => template($template),
     owner   => 'root',
     group   => 'root',
